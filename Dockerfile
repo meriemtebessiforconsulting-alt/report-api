@@ -1,21 +1,25 @@
-# Utilise l'image Java officielle
-FROM eclipse-temurin:17-jdk-alpine
+# Image Maven pour builder l'application
+FROM maven:3.9.1-eclipse-temurin-17 AS build
 
-# Définit le répertoire de travail
 WORKDIR /app
 
 # Copie les fichiers Maven
 COPY pom.xml .
 COPY src ./src
 
-# Compile l'application
-RUN ./mvnw clean package -DskipTests
+# Compile et package l'application
+RUN mvn clean package -DskipTests
 
-# Copie le JAR généré
-COPY target/*.jar app.jar
+# Image runtime pour exécuter le JAR
+FROM eclipse-temurin:17-jdk-alpine
 
-# Expose le port de l'application
+WORKDIR /app
+
+# Copie le JAR depuis l'image build
+COPY --from=build /app/target/*.jar app.jar
+
+# Expose le port
 EXPOSE 8080
 
-# Commande pour démarrer l'application
+# Démarre l'application
 ENTRYPOINT ["java", "-jar", "app.jar"]
