@@ -1,0 +1,23 @@
+[ {
+  "id" : "30a74b4e-de4c-4cf8-92ca-59b16825e464",
+  "appName" : "MyApp",
+  "title" : "Erreur de connexion",
+  "details" : "Impossible de se connecter avec l'utilisateur test, reçoit une erreur 500.",
+  "topic" : "connexion",
+  "userEmail" : "user@example.com",
+  "acceptContact" : true,
+  "status" : "new",
+  "version" : 1,
+  "createdAt" : [ 2025, 8, 21, 18, 4, 54, 749923300 ]
+}, {
+  "id" : "17608ff6-5874-4d78-843e-3febbba163e7",
+  "appName" : "MyApp",
+  "title" : "Erreur de connexion",
+  "details" : "Impossible de se connecter avec l'utilisateur test, reçoit une erreur 500.",
+  "topic" : "connexion",
+  "userEmail" : "user@example.com",
+  "acceptContact" : false,
+  "status" : "new",
+  "version" : 1,
+  "createdAt" : [ 2025, 8, 21, 18, 5, 52, 121493300 ]
+} ]
