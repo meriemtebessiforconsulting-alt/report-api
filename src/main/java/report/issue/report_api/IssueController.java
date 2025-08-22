@@ -1,13 +1,15 @@
 package report.issue.report_api;
 
-import report.issue.report_api.*;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
 public class IssueController {
-    private final IssueRepository repository = new IssueRepository();
+    private final IssueRepository repository;
+
+    public IssueController(IssueRepository repository) {
+        this.repository = repository;
+    }
 
     @PostMapping("/report-issue")
     public Issue reportIssue(@RequestBody IssuePayload payload) {
@@ -19,12 +21,11 @@ public class IssueController {
                 payload.getUserEmail(),
                 payload.isAcceptContact()
         );
-        repository.saveIssue(issue);
-        return issue;  // Spring va automatiquement convertir en JSON
+        return repository.save(issue);
     }
 
     @GetMapping("/issues")
     public List<Issue> getIssues() {
-        return repository.getAllIssues();
+        return repository.findAll();
     }
 }
