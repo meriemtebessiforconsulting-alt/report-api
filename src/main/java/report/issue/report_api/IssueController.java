@@ -21,8 +21,11 @@ public class IssueController {
                 payload.getUserEmail(),
                 payload.isAcceptContact()
         );
-        return repository.save(issue);
+
+        Issue saved = repository.save(issue);
+        return saved; // Retourne l'objet complet, incluant ID généré
     }
+
 
     @GetMapping("/issues")
     public List<Issue> getIssues() {
