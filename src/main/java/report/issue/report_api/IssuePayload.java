@@ -1,5 +1,4 @@
 package report.issue.report_api;
-
 public class IssuePayload {
     private String appName;
     private String title;
